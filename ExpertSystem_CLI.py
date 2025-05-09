@@ -52,30 +52,35 @@ def determine_kondisi_kolam(ph_air, suhu):
 
 # Input rule 3, kondisi pertumbuhan ikan
 def determine_hasil_keputusan(kondisi_bibit, kondisi_kolam, jenis_pakan):
+    if kondisi_bibit == "Sehat" and kondisi_kolam == "Baik":
+        return "Sangat Baik"
+    
     # Jenis Pakan:
     #    1 = Pelet
     #    2 = Telur
     #    3 = Usus
     #    4 = Cacing
-    if kondisi_bibit == "Sehat" and kondisi_kolam == "Baik":
-        return "Sangat Baik"
     if kondisi_bibit == "Sehat" and kondisi_kolam == "Cukup Baik":
         if jenis_pakan == 1:
             return "Sangat Baik"
         elif jenis_pakan in [2, 3, 4]:
             return "Baik"
+        
     if kondisi_bibit == "Sehat" and kondisi_kolam == "Buruk":
         return "Baik"
+    
     if kondisi_bibit == "Tidak Sehat" and kondisi_kolam == "Baik":
         if jenis_pakan == 1:
             return "Netral"
         elif jenis_pakan in [2, 3, 4]:
             return "Tidak Baik"
+        
     if kondisi_bibit == "Tidak Sehat" and kondisi_kolam == "Cukup Baik":
         if jenis_pakan in [1, 2]:
             return "Tidak Baik"
         elif jenis_pakan in [3, 4]:
             return "Sangat Tidak Baik"
+        
     if kondisi_bibit == "Tidak Sehat" and kondisi_kolam == "Buruk":
         return "Sangat Tidak Baik"
     return "Tidak Diketahui"
@@ -92,7 +97,7 @@ def input_with_validation(prompt, valid_options):
         except ValueError:
             print("Input harus berupa angka.")
 
-# User Input Menu
+# Input
 print("=== Sistem Pakar Bibit Ikan ===")
 
 bentuk_kepala = input_with_validation("Masukkan bentuk kepala\n 1: Runcing\n 2: Gemuk\n Your input: ", [1, 2])
