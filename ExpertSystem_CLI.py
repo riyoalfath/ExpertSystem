@@ -28,7 +28,7 @@ def tentukan_kondisi_bibit(bentuk_kepala, kelincahan, warna_kulit, kecacatan,
     if bentuk_kepala == 1 and kelincahan == 2 and warna_kulit == 1 and kecacatan == 3:
         return "Tidak Sehat", 0.75 * min(cf_bentuk, cf_kelincahan, cf_warna, cf_kecacatan)
 
-    return "Tidak Valid", 0.0
+    return "Tidak Valid", 1.0
 
 
 def tentukan_kondisi_kolam(ph_air, suhu):
@@ -41,7 +41,7 @@ def tentukan_kondisi_kolam(ph_air, suhu):
     if ph_air in (1, 3):
         if 27 <= suhu <= 30:
             return "Cukup Baik", 0.9
-        return "Buruk", 0.6
+        return "Buruk", 0.9
 
     # pH netral
     if ph_air == 2:
@@ -49,7 +49,7 @@ def tentukan_kondisi_kolam(ph_air, suhu):
             return "Baik", 1.0
         return "Cukup Baik", 0.8
 
-    return "Tidak Valid", 0.0
+    return "Tidak Valid", 1.0
 
 
 def tentukan_hasil_akhir(kondisi_bibit, kondisi_kolam, jenis_pakan, cf_bibit, cf_kolam):
@@ -93,7 +93,7 @@ def tentukan_hasil_akhir(kondisi_bibit, kondisi_kolam, jenis_pakan, cf_bibit, cf
     if kondisi_bibit == "Tidak Sehat" and kondisi_kolam == "Buruk":
         return "Sangat Tidak Baik", cf_hasil
 
-    return "Tidak Diketahui", 0.0
+    return "Tidak Diketahui", 1.0
 
 
 def input_validasi(prompt, option):
